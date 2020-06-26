@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="worflowDemande" name="worflow demande" isExecutable="true">
-    <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="usertask1" name="ajouter demande">
+  <process id="worflowDemandeVoiture" name="worflow demande voiture" isExecutable="true">
+    <startEvent id="startevent1" name="Start"
+     activiti:assignee="${employe.userName}">
       <extensionElements>
-        <activiti:formProperty id="1" name="id" type="long" variable="idd" required="true"></activiti:formProperty>
-        <activiti:formProperty id="2" name="description" type="string" variable="description" required="true"></activiti:formProperty>
-        <activiti:formProperty id="3" name="type de demande" type="string"></activiti:formProperty>
-        <activiti:formProperty id="4" name="langue" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="5" name="nom employe" type="string"></activiti:formProperty>
-        <activiti:formProperty id="6" name="prenom employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="1" name="id" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="2" name="nom_employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="3" name="prenom_employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="4" name="date_depart" type="date"></activiti:formProperty>
+        <activiti:formProperty id="5" name="lieu_depart" type="string"></activiti:formProperty>
+        <activiti:formProperty id="6" name="temps_depart" type="string"></activiti:formProperty>
+        <activiti:formProperty id="7" name="lieu_destination" type="string"></activiti:formProperty>
+        <activiti:formProperty id="8" name="date_retour" type="date"></activiti:formProperty>
+        <activiti:formProperty id="9" name="temps_retour" type="string"></activiti:formProperty>
+        <activiti:formProperty id="10" name="accompagants" type="string"></activiti:formProperty>
+        <activiti:formProperty id="11" name="id_task" type="string"></activiti:formProperty>
+        <activiti:formProperty id="12" name="CNRPS" type="string"></activiti:formProperty>
       </extensionElements>
-    </userTask>
+    </startEvent>
+    <userTask id="usertask1" name="accepter demande"
+    activiti:assignee="${employe.userName}"></userTask>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="exclusivegateway1"></sequenceFlow>
@@ -19,24 +27,29 @@
     <sequenceFlow id="flow3" sourceRef="exclusivegateway1" targetRef="endevent1"></sequenceFlow>
     <userTask id="usertask2" name="reviser demande">
       <extensionElements>
-        <activiti:formProperty id="1" name="id" type="long" variable="idd"></activiti:formProperty>
-        <activiti:formProperty id="2" name="description" type="string" variable="description"></activiti:formProperty>
-        <activiti:formProperty id="3" name="type de demande" type="string"></activiti:formProperty>
-        <activiti:formProperty id="4" name="langue" type="string"></activiti:formProperty>
-        <activiti:formProperty id="5" name="nom employe" type="string"></activiti:formProperty>
-        <activiti:formProperty id="6" name="prenom employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="1" name="id" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="2" name="nom_employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="3" name="prenom_employe" type="string"></activiti:formProperty>
+        <activiti:formProperty id="4" name="date_depart" type="date"></activiti:formProperty>
+        <activiti:formProperty id="5" name="lieu_depart" type="string"></activiti:formProperty>
+        <activiti:formProperty id="6" name="temps_depart" type="string"></activiti:formProperty>
+        <activiti:formProperty id="7" name="lieu_destination" type="string"></activiti:formProperty>
+        <activiti:formProperty id="8" name="date_retour" type="date"></activiti:formProperty>
+        <activiti:formProperty id="9" name="temps_retour" type="string"></activiti:formProperty>
+        <activiti:formProperty id="10" name="accompagants" type="string"></activiti:formProperty>
+        <activiti:formProperty id="11" name="id_task" type="string"></activiti:formProperty>
+        <activiti:formProperty id="12" name="CNRPS" type="string"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow4" sourceRef="exclusivegateway1" targetRef="usertask2"></sequenceFlow>
-    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="servicetask1"></sequenceFlow>
-    <serviceTask id="servicetask1" name="service chefDAAF"
-    activiti:expression="${ActivitiService.getTasks()}"></serviceTask>
+    <serviceTask id="servicetask1" name="service chefPark" activiti:expression="${ActivitiService.getTasks()}"></serviceTask>
     <endEvent id="endevent2" name="End"></endEvent>
     <sequenceFlow id="flow8" sourceRef="servicetask1" targetRef="endevent2"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_worflowDemande">
-    <bpmndi:BPMNPlane bpmnElement="worflowDemande" id="BPMNPlane_worflowDemande">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_worflowDemandeVoiture">
+    <bpmndi:BPMNPlane bpmnElement="worflowDemandeVoiture" id="BPMNPlane_worflowDemandeVoiture">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="65.0" y="150.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
@@ -77,7 +90,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
         <omgdi:waypoint x="197.0" y="280.0"></omgdi:waypoint>
-        <omgdi:waypoint x="315.0" y="188.0"></omgdi:waypoint>
+        <omgdi:waypoint x="197.0" y="195.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
         <omgdi:waypoint x="335.0" y="168.0"></omgdi:waypoint>
