@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.AgentDAAF;
-import com.example.demo.entity.ChefDAAF;
+
 import com.example.demo.entity.ChefHierarchique;
 import com.example.demo.entity.ChefPark;
 import com.example.demo.entity.Employe;
@@ -32,7 +31,6 @@ import com.example.demo.model.JwtUserDetails;
 import com.example.demo.model.LoginRequest;
 import com.example.demo.model.MessageResponse;
 import com.example.demo.model.SignupRequest;
-import com.example.demo.repository.ChefDAAFRepository;
 import com.example.demo.repository.ChefHierarchiqueRepository;
 import com.example.demo.repository.JwtRoleRepository;
 import com.example.demo.repository.JwtUserRepository;
@@ -55,8 +53,7 @@ public class AuthController {
 	@Autowired
 	ChefHierarchiqueRepository chefHierarchiqueRepository;
 	
-	@Autowired
-	ChefDAAFRepository chefDAAFRepository;
+
 
 	@Autowired
 	PasswordEncoder encoder;
@@ -106,12 +103,7 @@ public class AuthController {
 			
 		} else {
 			switch (strRole.toLowerCase()) {
-			case "chef daaf":	
-				JwtRole chefDAAFRole = jwtRoleRepository.findByName(JwtERole.ROLE_CHEFDAAF)
-						.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-				roles.add(chefDAAFRole);
-				user=new ChefDAAF();
-				break;
+	
 				case "chef park":	
 					JwtRole chefparkRole = jwtRoleRepository.findByName(JwtERole.ROLE_CHEFPARK)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -124,12 +116,7 @@ public class AuthController {
 					roles.add(chefhierarchiqueRole);
 					user=new ChefHierarchique();
 					break;
-				case "agent daaf":
-					JwtRole agentDAAFRole = jwtRoleRepository.findByName(JwtERole.ROLE_AGENTDAAF)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(agentDAAFRole);
-					user=new AgentDAAF(signUpRequest.getChefDAAFCin());
-					break;
+
 				case "admin":
 					JwtRole adminRole = jwtRoleRepository.findByName(JwtERole.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -167,21 +154,7 @@ chef.setListEmploye(listEmp);
 	}
 	chefHierarchiqueRepository.flush();
 } 
-if(signUpRequest.getChefDAAFCin()!=null) {
-	ChefDAAF chef=chefDAAFRepository
-			.findByCin(signUpRequest.getChefDAAFCin());
-	List<AgentDAAF> listAgent=new ArrayList<AgentDAAF>();
-	if (chef.getListAgent()==null) {
-		listAgent.add((AgentDAAF) user);
-	
-	} else {
-		listAgent.addAll(chef.getListAgent());
-		listAgent.add((AgentDAAF) user);
-		
-	}
-	chef.setListAgent(listAgent);
-	chefDAAFRepository.flush();
-}
+
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 }

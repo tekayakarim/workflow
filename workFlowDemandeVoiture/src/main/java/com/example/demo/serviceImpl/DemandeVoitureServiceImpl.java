@@ -37,7 +37,7 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 			Employe emp = employeRepository.findByNom(demandeVoiture.getEmp().getNom());
 			if(emp!=null) {
 				demandeVoiture.setEmp(emp);
-				demandeVoiture.setStatut("new");
+			//	demandeVoiture.setStatut("new");
 				workFlowDemandeVoitureService.startTheProcess(emp.getUserName(), demandeVoiture);
 				System.out.println(demandeVoiture);
 				return workFlowDemandeVoitureService.processInformation();
@@ -85,13 +85,13 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 	public String deleteDemande(long id) {
 		try {
 			DemandeVoiture dem=demandeVoitureRepository.findByid(id);
-			if(dem.getStatut().equals("new") || dem.getStatut().equals("denied"))
+		/*	if(dem.getStatut().equals("new") || dem.getStatut().equals("denied"))
 			{
 			demandeVoitureRepository.deleteById(id);
 			return "success";
 			}
 			else
-				return "cannot delete a demande with statut not equal to new or denied";
+				return "cannot delete a demande with statut not equal to new or denied";*/
 		} catch (IllegalArgumentException e) {
 			System.out.println("demande not found");
 			e.printStackTrace();
@@ -134,7 +134,7 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 	 DateFormat format = new SimpleDateFormat("yyyy/MM/dd ");
 				Date date = new Date();
 				dem.setDateRecuperation(format.format(date));
-				dem.setStatut("closed");
+			//	dem.setStatut("closed");
 				
 			demandeVoitureRepository.flush();
 			return "voiture rendu";
@@ -151,8 +151,8 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 			List<DemandeVoiture> lstdem=this.getAllDemandeByEmploye(userName);
 			List<DemandeVoiture> lstRes=new ArrayList<DemandeVoiture>();
 			for (DemandeVoiture demandeVoiture : lstdem) {
-				if(demandeVoiture.getStatut().equals("inProgress"))
-					lstRes.add(demandeVoiture);
+				/*if(demandeVoiture.getStatut().equals("inProgress"))
+					lstRes.add(demandeVoiture);*/
 			}
 			return lstRes;
 		} catch (Exception e) {

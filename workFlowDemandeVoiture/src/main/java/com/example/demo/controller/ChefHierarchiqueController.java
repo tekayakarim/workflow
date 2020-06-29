@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.ChefHierarchique;
-import com.example.demo.entity.DemandeDocument;
 import com.example.demo.entity.DemandeVoiture;
 import com.example.demo.service.ChefHierarchiqueService;
 
@@ -22,15 +21,9 @@ public class ChefHierarchiqueController {
 @Autowired
 ChefHierarchiqueService chefHierarchiqueService;
 //demande doc
-@GetMapping("/getAllDemandeDocument")
-public List<DemandeDocument> getAllDemandeDocument(@RequestParam String userName){
-	return chefHierarchiqueService.getAllNewDemandeDocument(userName);
-}
-@CrossOrigin(origins = "*")
-@PutMapping("/updateStatutDemandeDocument")
-public String updateDemandeDocumentStatut(@RequestParam Long id,@RequestParam String statut) {
-return 	chefHierarchiqueService.updateDemandeDocument(id,statut);
-}
+
+
+
 
 @GetMapping("/getAllChefHierarchique")
 public List<ChefHierarchique> getAllChef(){
@@ -43,8 +36,10 @@ public List<DemandeVoiture> getAllDemandeVoiture(@RequestParam String userName){
 }
 @CrossOrigin(origins = "*")
 @PutMapping("/updateStatutDemandeVoiture")
-public String updateDemandeVoitureStatut(@RequestParam Long id,@RequestParam String statut) {
-return 	chefHierarchiqueService.updateDemandeVoiture(id, statut);
+public String updateDemandeVoitureStatut(@RequestParam Long id,
+										@RequestParam int statut,
+										@RequestParam String motif) {
+return 	chefHierarchiqueService.updateDemandeVoiture(id, statut,motif);
 }
 @GetMapping("/getChefHierarchiqueByCin")
 public ChefHierarchique getByCin(@RequestParam String cin){

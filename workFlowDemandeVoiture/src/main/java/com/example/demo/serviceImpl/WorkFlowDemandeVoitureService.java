@@ -60,9 +60,10 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 		variables.put("temps_retour", demandeVoiture.getDate_retour());
 		variables.put("accompagants", demandeVoiture.getAccompagants());
 		variables.put("CNRPS", demandeVoiture.getEmp().getCNRPS());
+		//variables.put("taskId", id);
 		
-		
-		runtimeService.startProcessInstanceByKey("worflowDemandeVoiture",variables);
+		String id=runtimeService.startProcessInstanceByKey("worflowDemandeVoiture",variables).getDeploymentId();
+		demandeVoiture.setTaskId(id);
 		return processInformation();
 	}
 
@@ -77,10 +78,13 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 
 		taskList.forEach(task -> {
 
-			processAndTaskInfo.append("\n"+"ID: " + task.getId() + ", Name: " + task.getName() + ", Assignee: "
+			/*processAndTaskInfo.append("\n"+"ID: " + task.getId() + ", Name: " + task.getName() + ", Assignee: "
 					+ task.getAssignee() + ", Description: "
 					+task.getDescription()
-					+" ");
+					+" task id form : "
+					+formService.getTaskFormData(task.getId()).getFormProperties()	
+					);*/
+			
 		});
 
 		return processAndTaskInfo.toString();
@@ -88,6 +92,7 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 
 	@Override
 	public List<Task> getTasks(String assignee) {
+		
 		return taskService.createTaskQuery().taskAssignee(assignee).list();
 		
 			

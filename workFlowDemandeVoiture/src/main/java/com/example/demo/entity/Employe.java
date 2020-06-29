@@ -31,6 +31,10 @@ public class Employe extends JwtUser{
 		super();
 		
 	}
+	@Override
+	public String toString() {
+		return super.toString()+" Employe [chefHierarchiqueCin=" + chefHierarchiqueCin + ", CNRPS=" + CNRPS + "]";
+	}
 
 
 	

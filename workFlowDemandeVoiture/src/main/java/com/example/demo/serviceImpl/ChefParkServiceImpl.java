@@ -70,14 +70,14 @@ public class ChefParkServiceImpl implements ChefParkService{
 			//recuperer les demandes acceptes
 			for(DemandeVoiture dem:lstAllDemande)
 			{
-				if(!dem.getStatut().equals("new")
+				/*if(!dem.getStatut().equals("new")
 						&& !dem.getStatut().equals("denied")
 						&& !dem.getStatut().equals("toCheck")
 						&& !dem.getStatut().equals("closed")
-						&& !dem.getStatut().equals("inProgress"))
-				{
+						&& !dem.getStatut().equals("inProgress"))*/
+			//	{
 					lstDemandesChef.add(dem);	
-				}//end if
+				//}//end if
 			}//end for
 			//ajouter les demandes a l'historique
 		if(user.getListDemandeVoiture()==null)
@@ -199,7 +199,7 @@ public class ChefParkServiceImpl implements ChefParkService{
 	}
 
 	@Override
-	public String updateDemandeVoiture(long id, String statut) {
+	public String updateDemandeVoiture(long id, int statut) {
 		try {
 			DemandeVoiture dem=demandeVoitureRepository.findByid(id);
 			dem.setStatut(statut);
@@ -239,7 +239,7 @@ public class ChefParkServiceImpl implements ChefParkService{
 			voi.setDispo(false);
 			voitureRepository.flush();
 			
-			dem.setStatut("inProgress");
+		//	dem.setStatut("inProgress");
 			dem.setVoiture(voi);
 			demandeVoitureRepository.flush();
 			return "demande assigned";
@@ -257,8 +257,8 @@ public class ChefParkServiceImpl implements ChefParkService{
 			List<DemandeVoiture> lstHis=new ArrayList<DemandeVoiture>();
 			
 			for (DemandeVoiture demandeVoiture : lstAll) {
-				if(demandeVoiture.getStatut().equals("closed"))
-					lstHis.add(demandeVoiture);
+			/*	if(demandeVoiture.getStatut().equals("closed"))
+					lstHis.add(demandeVoiture);*/
 			}
 			return lstHis;
 		} catch (Exception e) {

@@ -20,11 +20,7 @@ public class ChefHierarchique extends JwtUser{
 				inverseJoinColumns = @JoinColumn(name = "demande_voiture_id"))
 	private List<DemandeVoiture> listDemandeVoiture;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(	name = "chef_hierarchique_list_demande_document", 
-				joinColumns = @JoinColumn(name = "chef_hierarchique_id"), 
-				inverseJoinColumns = @JoinColumn(name = "demande_document_id"))
-	private List<DemandeDocument> listDemandeDocument;
+
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(	name = "chef_hierarchique_list_employe", 
@@ -49,14 +45,7 @@ public class ChefHierarchique extends JwtUser{
 		this.listDemandeVoiture = listDemandeVoiture;
 	}
 
-	public List<DemandeDocument> getListDemandeDocument() {
-		return listDemandeDocument;
-	}
 
-	public void setListDemandeDocument(List<DemandeDocument> listDemandeDocument) {
-		this.listDemandeDocument = listDemandeDocument;
-	}
-	
 	
 	
 

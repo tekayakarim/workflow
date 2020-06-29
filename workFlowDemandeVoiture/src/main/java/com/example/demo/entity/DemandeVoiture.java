@@ -13,7 +13,7 @@ public class DemandeVoiture {
 private long id;
 private int nbPassergers;
 private String description;
-private String statut;
+private int statut;
 private String typeMission;
 private String dateRecuperation;
 private String dataDebut;
@@ -25,6 +25,10 @@ private String lieu_destination;
 private String date_retour;
 private String temps_retour;
 private String accompagants;
+private String motifR;
+private String codeOM;
+private String taskId;
+
 
 public String getLieu_depart() {
 	return lieu_depart;
@@ -68,23 +72,8 @@ private Employe emp;
 @OneToOne 
 private Voiture voiture;
 
-public DemandeVoiture(int nbPassergers, String description, String statut, String typeMission, String dateRecuperation,
-		String dataDebut, String dataFin, double poids, Employe emp) {
-	super();
-	this.nbPassergers = nbPassergers;
-	this.description = description;
-	this.statut = statut;
-	this.typeMission = typeMission;
-	this.dateRecuperation = dateRecuperation;
-	this.dataDebut = dataDebut;
-	this.dataFin = dataFin;
-	this.poids = poids;
-	this.emp = emp;
-}
-public DemandeVoiture() {
-	super();
 
-}
+
 public Voiture getVoiture() {
 	return voiture;
 }
@@ -121,10 +110,10 @@ public String getDescription() {
 public void setDescription(String description) {
 	this.description = description;
 }
-public String getStatut() {
+public int getStatut() {
 	return statut;
 }
-public void setStatut(String statut) {
+public void setStatut(int statut) {
 	this.statut = statut;
 }
 public String getTypeMission() {
@@ -165,6 +154,24 @@ public String toString() {
 			+ ", temps_depart=" + temps_depart + ", lieu_destination=" + lieu_destination + ", date_retour="
 			+ date_retour + ", temps_retour=" + temps_retour + ", accompagants=" + accompagants + ", emp=" + emp
 			+ ", voiture=" + voiture + "]";
+}
+public String getMotifR() {
+	return motifR;
+}
+public void setMotifR(String motifR) {
+	this.motifR = motifR;
+}
+public String getCodeOM() {
+	return codeOM;
+}
+public void setCodeOM(String codeOM) {
+	this.codeOM = codeOM;
+}
+public String getTaskId() {
+	return taskId;
+}
+public void setTaskId(String taskId) {
+	this.taskId = taskId;
 }
 
 
