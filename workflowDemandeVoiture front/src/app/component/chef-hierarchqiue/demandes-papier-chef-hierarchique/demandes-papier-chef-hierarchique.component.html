@@ -1,0 +1,75 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demandes des documents papiers</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <!--  <app-demande-papier></app-demande-papier>-->
+      <ng-container *ngIf="elements.length < 1">Pas de demande</ng-container>
+      <ng-container *ngIf="elements.length > 0">
+        <table
+          bordered="true"
+          mdbTable
+          #tableEl="mdbTable"
+          hover="true"
+          class="mt-3"
+        >
+          <thead>
+            <tr>
+              <th
+                *ngFor="let head of headElements; let i = index"
+                [mdbTableSort]="elements"
+                [sortBy]="headElements[i]"
+                scope="col"
+              >
+                {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+            </tr>
+          </thead>
+          <tbody #row>
+            <tr mdbTableCol *ngFor="let el of elements; let i = index">
+              <th
+                scope="row"
+                width="5%"
+                style="text-align: center;"
+                [routerLink]="['/detail-demande-doc-chef', el.id]"
+              >
+                {{ el.id }}
+              </th>
+              <td
+                width="15%"
+                style="text-align: center;"
+                [routerLink]="['/detail-demande-doc-chef', el.id]"
+              >
+                {{ el.type }}
+              </td>
+              <td
+                width="35%"
+                [routerLink]="['/detail-demande-doc-chef', el.id]"
+              >
+                {{ el.description }}
+              </td>
+              <td
+                width="20%"
+                [routerLink]="['/detail-demande-doc-chef', el.id]"
+              >
+                {{ el.emp.nom }}
+              </td>
+              <td
+                width="20%"
+                [routerLink]="['/detail-demande-doc-chef', el.id]"
+              >
+                {{ el.statut }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+    </mdb-card-body>
+  </mdb-card>
+</div>

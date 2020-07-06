@@ -1,0 +1,24 @@
+.container:first-child {
+    margin-left: 22%;
+    margin-top: 7%;
+}
+@media only screen and (max-width: 1000px) {
+    .container:first-child {
+        width: 100%;
+        margin-left: 0%;
+    }
+}
+.blob-btn-warning,
+.blob-btn-danger,
+.blob-btn-accept {
+    &::before {
+        border: none;
+    }
+}
+
+li {
+    cursor: pointer;
+}
+li:hover {
+    background-color: #e2e2e2;
+}

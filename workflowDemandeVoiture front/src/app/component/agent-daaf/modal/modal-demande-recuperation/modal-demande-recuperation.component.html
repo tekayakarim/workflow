@@ -1,0 +1,96 @@
+<div class="first-div"></div>
+<button
+  class="blob-btn-accept mr-1 ml-1"
+  id="login-btn-container"
+  data-toggle="modal"
+  data-target="#basicExample"
+  (click)="frame.show()"
+>
+  <i class="fas fa-pen"></i>
+  <span class="blob-btn-accept__inner">
+    <span class="blob-btn-accept__blobs">
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+    </span>
+  </span>
+</button>
+<div
+  mdbModal
+  #frame="mdbModal"
+  class="modal fade top"
+  id="frameModalTop"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+  style="text-align: center;"
+>
+  <div class="modal-dialog modal-sm modal-notify" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div
+        class="modal-header d-flex justify-content-center"
+        style="background-color: rgba(0, 177, 106, 1);"
+      >
+        <p class="heading">Are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body" style="color: rgba(0, 177, 106, 1);">
+        <mdb-icon
+          fas
+          icon="check"
+          size="2x"
+          class="animated rotateIn"
+        ></mdb-icon>
+      </div>
+      <input
+        placeholder="Date de recuperation de la demande"
+        class="form-control"
+        type="text"
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        id="date"
+        style="width: 88%; margin-left: 6%;"
+        (blur)="onBlurMethod($event.target.value)"
+      />
+      <!--Footer-->
+      <div class="modal-footer justify-content-center mt-4">
+        <button
+          class="blob-btn-accept mr-1 ml-1"
+          id="login-btn-container"
+          type="submit"
+          (click)="demandeDone()"
+        >
+          Envoyer
+          <span class="blob-btn-accept__inner">
+            <span class="blob-btn-accept__blobs">
+              <span class="blob-btn-accept__blob"></span>
+              <span class="blob-btn-accept__blob"></span>
+              <span class="blob-btn-accept__blob"></span>
+              <span class="blob-btn-accept__blob"></span>
+              <span class="blob-btn-accept__blob"></span>
+              <span class="blob-btn-accept__blob"></span>
+            </span>
+          </span>
+        </button>
+        <a
+          type="button"
+          mdbBtn
+          color="success"
+          class="waves-effect"
+          mdbWavesEffect
+          data-dismiss="modal"
+          (click)="frame.hide()"
+          >Annuler</a
+        >
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

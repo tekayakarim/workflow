@@ -1,0 +1,59 @@
+<table bordered="true" mdbTable #tableEl="mdbTable" hover="true" class="mt-3">
+  <thead>
+    <tr>
+      <th
+        *ngFor="let head of headElements; let i = index"
+        [mdbTableSort]="elements"
+        [sortBy]="headElements[i]"
+        scope="col"
+      >
+        {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+      </th>
+    </tr>
+  </thead>
+  <tbody #row>
+    <ng-container *ngFor="let el of elements; let i = index">
+      <tr mdbTableCol *ngIf="el.statut == 'toCheck'">
+        <th scope="row" style="text-align: center;">{{ el.id }}</th>
+        <td width="25%" style="text-align: center;">{{ el.type }}</td>
+        <td width="45%">{{ el.description }}</td>
+        <td width="17%" style="text-align: center;">
+          <button
+            *ngIf="el.langue == 'arabe'"
+            class="blob-btn-warning"
+            [routerLink]="['/modifier-demande-ar', el.id]"
+          >
+            <i class="fas fa-pen"></i>
+            <span class="blob-btn-warning__inner">
+              <span class="blob-btn-warning__blobs">
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+              </span>
+            </span>
+          </button>
+          <button
+            *ngIf="el.langue == 'francais'"
+            class="blob-btn-warning"
+            [routerLink]="['/modifier-demande', el.id]"
+          >
+            <i class="fas fa-pen"></i>
+            <span class="blob-btn-warning__inner">
+              <span class="blob-btn-warning__blobs">
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+              </span>
+            </span>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

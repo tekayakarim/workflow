@@ -1,0 +1,139 @@
+<button
+  class="blob-btn-accept"
+  id="login-btn-container"
+  (click)="basicModal.show()"
+>
+  Ajouter une voiture <i class="fas fa-plus"></i>
+  <span class="blob-btn-accept__inner">
+    <span class="blob-btn-accept__blobs">
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+    </span>
+  </span>
+</button>
+<div
+  mdbModal
+  #basicModal="mdbModal"
+  class="modal fade right"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md" role="document">
+    <div
+      class="modal-content"
+      style="background-color: transparent; box-shadow: none; border: none;"
+    >
+      <div class="container">
+        <mdb-card>
+          <mdb-card-header
+            style="background-color: #3abeea;"
+            class="text-center text-white"
+          >
+            <h5>
+              <strong>Ajouter une voiture</strong>
+            </h5>
+          </mdb-card-header>
+          <mdb-card-body class="px-lg-5 pt-0">
+            <form
+              class="text-center"
+              style="color: #757575;"
+              [formGroup]="voitureForm"
+              (submit)="onSubmit(); basicModal.hide()"
+            >
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    id="materialRegisterFormFirstName"
+                    class="form-control mt-4"
+                    mdbInput
+                    placeholder="Matricule"
+                    formControlName="matricule"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    id="materialRegisterFormLastName"
+                    class="form-control mt-4"
+                    mdbInput
+                    placeholder="Nombre de Chevaux"
+                    formControlName="nbChevaux"
+                  />
+                </div>
+              </div>
+
+              <input
+              type="text"
+                id="materialRegisterFormLastName"
+                class="form-control mt-4"
+                mdbInput
+                placeholder="Couleur"
+                formControlName="couleur"
+              />
+              <input
+              type="number"
+                id="materialRegisterFormLastName"
+                class="form-control mt-4"
+                mdbInput
+                placeholder="Poids Autorise"
+                formControlName="poidsAutorise"
+              />
+
+              <input
+              type="number"
+                id="materialRegisterFormLastName"
+                class="form-control mt-4"
+                mdbInput
+                placeholder="Nombre de Passagers"
+                formControlName="nbPassagers"
+              />
+
+      <br>
+
+              <button class="blob-btn mr-1 ml-1" type="submit">
+                Ajouter <i class="fas fa-plus"></i>
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>
+              <button
+                class="blob-btn-danger mr-1 ml-1"
+                id="login-btn-container"
+                (click)="basicModal.hide()"
+                type="reset"
+              >
+                Annuler <i class="fa fa-times" aria-hidden="true"></i>
+                <span class="blob-btn-danger__inner">
+                  <span class="blob-btn-danger__blobs">
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </form>
+            <!-- Form -->
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Material form register -->
+      </div>
+    </div>
+  </div>
+</div>

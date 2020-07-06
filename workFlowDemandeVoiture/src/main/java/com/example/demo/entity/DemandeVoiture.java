@@ -146,15 +146,7 @@ public boolean equals(Object obj) {
 DemandeVoiture demande=(DemandeVoiture)obj;
 	return super.equals(demande.getId());
 }
-@Override
-public String toString() {
-	return "DemandeVoiture [id=" + id + ", nbPassergers=" + nbPassergers + ", description=" + description + ", statut="
-			+ statut + ", typeMission=" + typeMission + ", dateRecuperation=" + dateRecuperation + ", dataDebut="
-			+ dataDebut + ", dataFin=" + dataFin + ", poids=" + poids + ", lieu_depart=" + lieu_depart
-			+ ", temps_depart=" + temps_depart + ", lieu_destination=" + lieu_destination + ", date_retour="
-			+ date_retour + ", temps_retour=" + temps_retour + ", accompagants=" + accompagants + ", emp=" + emp
-			+ ", voiture=" + voiture + "]";
-}
+
 public String getMotifR() {
 	return motifR;
 }
@@ -172,6 +164,15 @@ public String getTaskId() {
 }
 public void setTaskId(String taskId) {
 	this.taskId = taskId;
+}
+@Override
+public String toString() {
+	return "DemandeVoiture [id=" + id + ", nbPassergers=" + nbPassergers + ", description=" + description + ", statut="
+			+ statut + ", typeMission=" + typeMission + ", dateRecuperation=" + dateRecuperation + ", dataDebut="
+			+ dataDebut + ", dataFin=" + dataFin + ", poids=" + poids + ", lieu_depart=" + lieu_depart
+			+ ", temps_depart=" + temps_depart + ", lieu_destination=" + lieu_destination + ", date_retour="
+			+ date_retour + ", temps_retour=" + temps_retour + ", accompagants=" + accompagants + ", motifR=" + motifR
+			+ ", codeOM=" + codeOM + ", taskId=" + taskId + ", emp=" + emp + ", voiture=" + voiture + "]";
 }
 
 

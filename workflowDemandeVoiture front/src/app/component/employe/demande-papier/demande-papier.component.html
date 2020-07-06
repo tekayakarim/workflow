@@ -1,0 +1,268 @@
+<button
+  class="blob-btn-accept"
+  id="login-btn-container"
+  (click)="basicModal.show()"
+>
+  Ajouter une demande <i class="fas fa-plus"></i>
+  <span class="blob-btn-accept__inner">
+    <span class="blob-btn-accept__blobs">
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+    </span>
+  </span>
+</button>
+<div
+  mdbModal
+  #basicModal="mdbModal"
+  class="modal fade right"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md" role="document">
+    <div
+      class="modal-content"
+      style="background-color: transparent; box-shadow: none; border: none;"
+    >
+      <div class="container">
+        <mdb-card>
+          <mdb-card-header
+            style="background-color: #3abeea;"
+            class="text-center text-white"
+          >
+            <h5 id="titre">Ajouter une demande</h5>
+          </mdb-card-header>
+          <mdb-card-body class="px-lg-5 pt-0">
+            <nav class="nav nav-pills nav-justified mt-4">
+              <a id="idFr" class="nav-item nav-link active">
+                Langue française
+              </a>
+              <a id="idAr" class="nav-item nav-link">
+                اللغة العربية
+              </a>
+            </nav>
+            <!--From en francais-->
+
+            <form
+              id="formFr"
+              class="text-center"
+              style="color: #757575;"
+              [formGroup]="documentForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    id="materialRegisterFormFirstName"
+                    class="form-control mt-4"
+                    mdbInput
+                    value="{{ employe.prenom }}"
+                    disabled
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="materialRegisterFormLastName"
+                    class="form-control mt-4"
+                    mdbInput
+                    value="{{ employe.nom }}"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <textarea
+                formControlName="description"
+                type="text"
+                id="materialContactFormMessage"
+                placeholder="description"
+                class="form-control md-textarea mt-4"
+                mdbInput
+                rows="10"
+              ></textarea>
+
+              <select
+                class="browser-default custom-select mb-4 mt-4"
+                formControlName="type"
+              >
+                <option value="" disabled selected hidden
+                  >Choisir le type de document
+                </option>
+                <option value="Attestation de salaire"
+                  >Attestation de salaire</option
+                >
+                <option value="Relevé du service">Relevé du service</option>
+                <option value="titre de congés">titre de congés</option>
+                <option value="Promotion de grade">Promotion de grade</option>
+                <option value="Avancement Ordinaire"
+                  >Avancement Ordinaire</option
+                >
+                <option value="Décision de Promotion"
+                  >Décision de Promotion</option
+                >
+                <option value="Décision de Détachement"
+                  >Décision de Détachement</option
+                >
+                <option value="Décision de la Mise au non Disponibilité">
+                  Décision de la Mise au non Disponibilité</option
+                >
+                <option value="Décision d’Affectation"
+                  >Décision d’Affectation</option
+                >
+                <option value="Attestation de Travail"
+                  >Attestation de Travail</option
+                >
+                <option value="Fiche de Paie">Fiche de Paie</option>
+                <option value="Attestation de Retenue d’Impôt"
+                  >Attestation de Retenue d’Impôt</option
+                >
+                <option value="Décision d’Affectation"
+                  >Décision d’Affectation</option
+                >
+                <option value="Autres Documents">Autres Documents</option>
+              </select>
+
+              <button class="blob-btn mr-1 ml-1" type="submit">
+                Ajouter <i class="fas fa-plus"></i>
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>
+              <button
+                class="blob-btn-danger mr-1 ml-1"
+                id="login-btn-container"
+                (click)="basicModal.hide()"
+                type="reset"
+              >
+                Annuler <i class="fa fa-times" aria-hidden="true"></i>
+                <span class="blob-btn-danger__inner">
+                  <span class="blob-btn-danger__blobs">
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </form>
+
+            <!--From en arabe-->
+            <form
+              id="formArabe"
+              class="text-center"
+              style="color: #757575; display: none;"
+              [formGroup]="documentFormArabe"
+              (ngSubmit)="onSubmitArabe()"
+            >
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    id="materialRegisterFormFirstName"
+                    class="form-control mt-4"
+                    mdbInput
+                    value="{{ employe.prenom }}"
+                    disabled
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="materialRegisterFormLastName"
+                    class="form-control mt-4"
+                    mdbInput
+                    value="{{ employe.nom }}"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <textarea
+                formControlName="descriptionArabe"
+                type="text"
+                id="materialContactFormMessage"
+                placeholder="وصف المطلب"
+                class="form-control md-textarea mt-4"
+                mdbInput
+                rows="10"
+              ></textarea>
+
+              <select
+                class="browser-default custom-select mb-4 mt-4"
+                formControlName="typeArabe"
+              >
+                <option value="" disabled selected hidden>نوع المطلب </option>
+                <option value="شهادة عمل">شهادة عمل</option>
+                <option value="قائمة خدمات">قائمة خدمات</option>
+                <option value="قرار في العطلة ">قرار في العطلة </option>
+                <option value="لتسمية في الرتبة">التسمية في الرتبة</option>
+                <option value="التدرج">التدرج</option>
+                <option value="قرار ترقية">قرار ترقية</option>
+                <option value="قرار الحاق">قرار الحاق</option>
+                <option value="قرار عدم مباشرة"> قرار عدم مباشرة</option>
+                <option value="قرار نقلة">قرار نقلة</option>
+                <option value="شهادة في الأجر">شهادة في الأجر</option>
+                <option value="بطاقة أجر">بطاقة أجر</option>
+                <option value="شهادة في الأداء على الدخل"
+                  >شهادة في الأداء على الدخل</option
+                >
+
+                <option value="وثائق أخرى">وثائق أخرى</option>
+              </select>
+
+              <button class="blob-btn mr-1 ml-1" type="submit">
+                زيادة <i class="fas fa-plus"></i>
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>
+              <button
+                class="blob-btn-danger mr-1 ml-1"
+                id="login-btn-container"
+                (click)="basicModal.hide()"
+                type="reset"
+              >
+                الغاء <i class="fa fa-times" aria-hidden="true"></i>
+                <span class="blob-btn-danger__inner">
+                  <span class="blob-btn-danger__blobs">
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </form>
+            <!-- Form -->
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Material form register -->
+      </div>
+    </div>
+  </div>
+</div>

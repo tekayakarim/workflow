@@ -45,4 +45,10 @@ return 	chefHierarchiqueService.updateDemandeVoiture(id, statut,motif);
 public ChefHierarchique getByCin(@RequestParam String cin){
 	return chefHierarchiqueService.getCin(cin);
 }
+
+@GetMapping("/complete")
+public String complete(@RequestParam String task){
+	return chefHierarchiqueService.complete(task);
+}
+
 }

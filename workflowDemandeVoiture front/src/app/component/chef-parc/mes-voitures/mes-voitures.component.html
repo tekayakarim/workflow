@@ -1,0 +1,52 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active">tous les voitures</mdb-breadcrumb-item>
+  </mdb-breadcrumb>
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <app-add-voiture></app-add-voiture>
+      <ng-container *ngIf="elements.length < 1">Pas de voiture</ng-container>
+      <ng-container *ngIf="elements.length > 0">
+        <table
+          bordered="true"
+          mdbTable
+          #tableEl="mdbTable"
+          hover="true"
+          class="mt-3"
+        >
+          <thead>
+            <tr>
+              <th
+                *ngFor="let head of headElements; let i = index"
+                [mdbTableSort]="elements"
+                [sortBy]="headElements[i]"
+                scope="col"
+              >
+                {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+            </tr>
+          </thead>
+          <tbody #row>
+            <tr mdbTableCol *ngFor="let el of elements; let i = index">
+              <th scope="row" style="text-align: center;">
+                {{ el.matricule }}
+              </th>
+
+              <th scope="row" style="text-align: center;">
+                {{ el.nbChevaux }}
+              </th>
+              <td style="text-align: center;">{{ el.couleur }}</td>
+              <td>{{ el.poidsAutorise }}</td>
+              <td>{{ el.nbPassagers }}</td>
+              <td *ngIf="el.dispo">oui</td>
+              <td *ngIf="!el.dispo">non</td>
+            </tr>
+          </tbody>
+        </table></ng-container
+      >
+    </mdb-card-body>
+  </mdb-card>
+</div>

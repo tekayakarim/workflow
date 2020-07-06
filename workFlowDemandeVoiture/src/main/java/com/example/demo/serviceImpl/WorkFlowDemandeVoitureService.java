@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.DemandeVoiture;
 import com.example.demo.entity.Employe;
 import com.example.demo.model.TaskInstanceDTO;
+import com.example.demo.repository.DemandeVoitureRepository;
 import com.example.demo.repository.EmployeRepository;
 import com.example.demo.service.ActivitiService;
 @Service
@@ -24,6 +25,9 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 	
 	@Autowired
 	EmployeRepository employeRepository;
+	
+	@Autowired
+	DemandeVoitureRepository demandeVoitureRepository;
 	
 	@Autowired
 	private TaskService taskService;
@@ -62,8 +66,14 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 		variables.put("CNRPS", demandeVoiture.getEmp().getCNRPS());
 		//variables.put("taskId", id);
 		
-		String id=runtimeService.startProcessInstanceByKey("worflowDemandeVoiture",variables).getDeploymentId();
+		String id=runtimeService.startProcessInstanceByKey("worflowDemandeVoiture",variables).getId();
+		System.out.println(id);
+		
+	System.out.println(runtimeService.getVariableInstancesLocal(id));	
+	
+		System.out.println("demande from the system \n"+demandeVoiture);
 		demandeVoiture.setTaskId(id);
+		demandeVoitureRepository.flush();
 		return processInformation();
 	}
 
@@ -78,12 +88,12 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 
 		taskList.forEach(task -> {
 
-			/*processAndTaskInfo.append("\n"+"ID: " + task.getId() + ", Name: " + task.getName() + ", Assignee: "
+			processAndTaskInfo.append("\n"+"ID: " + task.getId() + ", Name: " + task.getName() + ", Assignee: "
 					+ task.getAssignee() + ", Description: "
 					+task.getDescription()
 					+" task id form : "
 					+formService.getTaskFormData(task.getId()).getFormProperties()	
-					);*/
+					);
 			
 		});
 
@@ -100,7 +110,23 @@ public class WorkFlowDemandeVoitureService implements ActivitiService {
 
 	@Override
 	public void completeTask(String taskId) {
-		taskService.complete(taskId);
+		List<Task> taskList = taskService.createTaskQuery().executionId(taskId).list();
+		StringBuilder processAndTaskInfo = new StringBuilder();
+		taskList.forEach(task -> {
+
+			processAndTaskInfo.append("\n"+"ID: " + task.getId() + ", Name: " + task.getName() + ", Assignee: "
+					+ task.getAssignee() + ", Description: "
+					+task.getDescription()
+					+" task id form : "
+					+formService.getTaskFormData(task.getId()).getFormProperties()	
+					);
+			taskService.complete(task.getId());
+		System.out.println("task completed"+task.getId());
+			
+		});
+		System.out.println("////"+processAndTaskInfo);
+		
+		
 	}
 
 

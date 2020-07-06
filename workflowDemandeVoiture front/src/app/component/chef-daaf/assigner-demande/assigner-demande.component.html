@@ -1,0 +1,127 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demandes des documents papiers</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+  <div class="row">
+    <div class="col-6">
+      <mdb-card style="box-shadow: none; border: none;">
+        <mdb-card-body>
+          <h3>Details demande :</h3>
+          <table bordered="true" mdbTable class="mt-3">
+            <tbody>
+              <tr *ngFor="let l of headElements; let i = index">
+                <td width="50%" style="font-weight: 500;">
+                  {{ l }}
+                </td>
+                <td>{{ elements[i] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-6">
+      <mdb-card style="box-shadow: none; border: none;">
+        <mdb-card-body>
+          <h3>Assigner à :</h3>
+          <ng-container *ngIf="exampleAgent.length < 1"
+            >Pas d'agent disponible</ng-container
+          >
+          <ng-container *ngIf="exampleAgent.length > 0">
+            <ul class="list-group" hover="true" *ngFor="let i of exampleAgent">
+              <div
+                mdbModal
+                #frame="mdbModal"
+                class="modal fade top"
+                id="frameModalTop"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myModalLabel"
+                aria-hidden="true"
+              >
+                <div
+                  class="modal-dialog modal-sm modal-notify modal-success"
+                  role="document"
+                >
+                  <!--Content-->
+                  <div class="modal-content text-center">
+                    <!--Header-->
+                    <div
+                      class="modal-header d-flex justify-content-center"
+                      style="background-color: rgba(0, 177, 106, 1);"
+                    >
+                      <p class="heading">Are you sure?</p>
+                    </div>
+
+                    <!--Body-->
+                    <div
+                      class="modal-body"
+                      style="color: rgba(0, 177, 106, 1);"
+                    >
+                      <mdb-icon
+                        fas
+                        icon="check"
+                        size="4x"
+                        class="animated rotateIn"
+                      ></mdb-icon>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                      <button
+                        class="blob-btn-accept mr-1 ml-1"
+                        id="login-btn-container"
+                        type="submit"
+                        (click)="assignerDemande(i.id); frame.hide()"
+                      >
+                        Modifier
+                        <span class="blob-btn-accept__inner">
+                          <span class="blob-btn-accept__blobs">
+                            <span class="blob-btn-accept__blob"></span>
+                            <span class="blob-btn-accept__blob"></span>
+                            <span class="blob-btn-accept__blob"></span>
+                            <span class="blob-btn-accept__blob"></span>
+                            <span class="blob-btn-accept__blob"></span>
+                            <span class="blob-btn-accept__blob"></span>
+                          </span>
+                        </span>
+                      </button>
+                      <a
+                        type="button"
+                        mdbBtn
+                        color="success"
+                        class="waves-effect"
+                        mdbWavesEffect
+                        data-dismiss="modal"
+                        (click)="frame.hide()"
+                        >Annuler</a
+                      >
+                    </div>
+                  </div>
+                  <!--/.Content-->
+                </div>
+              </div>
+
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+                data-toggle="modal"
+                data-target="#basicExample"
+                (click)="frame.show()"
+              >
+                {{ i.nom }}
+                <mdb-badge pill="true" primary="true" style="font-size: 16px;"
+                  >Aucune demande en cous
+                </mdb-badge>
+              </li>
+            </ul></ng-container
+          >
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>

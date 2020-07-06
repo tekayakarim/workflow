@@ -43,7 +43,7 @@ public class ChefHierarchiqueServiceImpl implements ChefHierarchiqueService {
 			for(DemandeVoiture dem:lstAllDemande)
 			{
 				if(dem.getEmp().getChefHierarchiqueCin().equals(user.getCin()) 
-						//&& dem.getStatut().equals("accepted")
+						&& dem.getStatut()==-1
 						//&& !dem.getStatut().equals("denied")
 						//&& !dem.getStatut().equals("toCheck")
 						//&& !dem.getStatut().equals("inProgress")
@@ -109,6 +109,7 @@ public class ChefHierarchiqueServiceImpl implements ChefHierarchiqueService {
 			demandeVoitureRepository.flush();
 			
 			workFlowDemandeVoitureService.completeTask(dem.getTaskId());
+			
 			return "updated";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,5 +134,10 @@ public class ChefHierarchiqueServiceImpl implements ChefHierarchiqueService {
 		
 		return chefHierarchiqueRepository.findByCin(cin);
 	}
+	@Override
+	public String complete(String task) {
+		workFlowDemandeVoitureService.completeTask(task);
+		return "done";
+		}
 
 }

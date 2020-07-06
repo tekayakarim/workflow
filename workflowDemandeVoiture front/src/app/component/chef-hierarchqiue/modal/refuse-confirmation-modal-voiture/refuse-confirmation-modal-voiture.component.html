@@ -1,0 +1,85 @@
+<div class="first-div"></div>
+<button
+  class="blob-btn-danger mr-1 ml-1"
+  id="login-btn-container"
+  data-toggle="modal"
+  data-target="#basicExample"
+  (click)="frame.show()"
+>
+  <i class="fas fa-times"></i>
+  <span class="blob-btn-danger__inner">
+    <span class="blob-btn-danger__blobs">
+      <span class="blob-btn-danger__blob"></span>
+      <span class="blob-btn-danger__blob"></span>
+      <span class="blob-btn-danger__blob"></span>
+      <span class="blob-btn-danger__blob"></span>
+      <span class="blob-btn-danger__blob"></span>
+      <span class="blob-btn-danger__blob"></span>
+    </span>
+  </span>
+</button>
+
+<div
+  mdbModal
+  #frame="mdbModal"
+  class="modal fade top"
+  id="frameModalTop"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">ete vous sure ?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon
+          fas
+          icon="times"
+          size="4x"
+          class="animated rotateIn"
+        ></mdb-icon>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <button
+          type="submit"
+          class="blob-btn-danger mr-1 ml-1"
+          id="login-btn-container"
+          (click)="refuseDemande(id); frame.hide()"
+        >
+          Supprimer
+          <span class="blob-btn-danger__inner">
+            <span class="blob-btn-danger__blobs">
+              <span class="blob-btn-danger__blob"></span>
+              <span class="blob-btn-danger__blob"></span>
+              <span class="blob-btn-danger__blob"></span>
+              <span class="blob-btn-danger__blob"></span>
+              <span class="blob-btn-danger__blob"></span>
+              <span class="blob-btn-danger__blob"></span>
+            </span>
+          </span>
+        </button>
+        <button
+          type="reset"
+          mdbBtn
+          color="danger"
+          class="waves-effect"
+          mdbWavesEffect
+          data-dismiss="modal"
+          (click)="frame.hide()"
+        >
+          Annuler
+        </button>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

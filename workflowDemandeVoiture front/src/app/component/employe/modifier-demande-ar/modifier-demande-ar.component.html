@@ -1,0 +1,171 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demande de document papier</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >ورقة إدارية id = {{ id }}</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <form
+        class="text-center"
+        style="color: #757575;"
+        [formGroup]="documentForm"
+        (submit)="modify(); frame.hide()"
+      >
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="text"
+              formControlName="nom"
+              id="materialRegisterFormFirstName"
+              class="form-control mt-4"
+              mdbInput
+              disabled
+            />
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              formControlName="prenom"
+              id="materialRegisterFormLastName"
+              class="form-control mt-4"
+              mdbInput
+              disabled
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          formControlName="cin"
+          id="materialRegisterFormLastName"
+          class="form-control mt-4"
+          mdbInput
+          disabled
+        />
+        <textarea
+          type="text"
+          id="materialContactFormMessage"
+          placeholder="وصف المطلب"
+          class="form-control md-textarea mt-4"
+          mdbInput
+          rows="10"
+          formControlName="description"
+        ></textarea>
+
+        <select
+          class="browser-default custom-select mb-4 mt-4"
+          formControlName="type"
+        >
+          <option value="" disabled selected hidden>نوع المطلب </option>
+          <option value="شهادة عمل">شهادة عمل</option>
+          <option value="قائمة خدمات">قائمة خدمات</option>
+          <option value="قرار في العطلة ">قرار في العطلة </option>
+          <option value="لتسمية في الرتبة">التسمية في الرتبة</option>
+          <option value="التدرج">التدرج</option>
+          <option value="قرار ترقية">قرار ترقية</option>
+          <option value="قرار الحاق">قرار الحاق</option>
+          <option value="قرار عدم مباشرة"> قرار عدم مباشرة</option>
+          <option value="قرار نقلة">قرار نقلة</option>
+          <option value="شهادة في الأجر">شهادة في الأجر</option>
+          <option value="بطاقة أجر">بطاقة أجر</option>
+          <option value="شهادة في الأداء على الدخل"
+            >شهادة في الأداء على الدخل</option
+          >
+
+          <option value="وثائق أخرى">وثائق أخرى</option>
+        </select>
+        <span
+          class="blob-btn-warning mr-1 ml-1"
+          id="login-btn-container"
+          data-toggle="modal"
+          data-target="#basicExample"
+          (click)="frame.show()"
+        >
+          زيادة
+          <span class="blob-btn-warning__inner">
+            <span class="blob-btn-warning__blobs">
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+            </span>
+          </span>
+        </span>
+        <div
+          mdbModal
+          #frame="mdbModal"
+          class="modal fade top"
+          id="frameModalTop"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="myModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content text-center">
+              <!--Header-->
+              <div
+                class="modal-header d-flex justify-content-center"
+                style="background-color: rgba(255, 203, 5, 1);"
+              >
+                <p class="heading">Are you sure?</p>
+              </div>
+
+              <!--Body-->
+              <div class="modal-body" style="color: rgba(255, 203, 5, 1);">
+                <mdb-icon
+                  fas
+                  icon="pen"
+                  size="4x"
+                  class="animated rotateIn"
+                ></mdb-icon>
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer justify-content-center">
+                <button
+                  class="blob-btn-warning mr-1 ml-1"
+                  id="login-btn-container"
+                  type="submit"
+                >
+                  Modifier
+                  <span class="blob-btn-warning__inner">
+                    <span class="blob-btn-warning__blobs">
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                    </span>
+                  </span>
+                </button>
+                <a
+                  type="button"
+                  mdbBtn
+                  color="warning"
+                  class="waves-effect"
+                  mdbWavesEffect
+                  data-dismiss="modal"
+                  (click)="frame.hide()"
+                  >Annuler</a
+                >
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+      </form>
+    </mdb-card-body>
+  </mdb-card>
+</div>

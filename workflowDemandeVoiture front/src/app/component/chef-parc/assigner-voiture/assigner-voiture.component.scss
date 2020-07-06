@@ -1,0 +1,32 @@
+.container:first-child {
+  margin-left: 22%;
+  margin-top: 7%;
+}
+@media only screen and (max-width: 1000px) {
+  .container:first-child {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+
+li .blob-btn-accept {
+  &::before {
+    border: none;
+  }
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.blob-btn-accept:hover {
+  box-shadow: none;
+}
+ul {
+  list-style: none;
+}
+li {
+  cursor: pointer;
+  text-align: center;
+  padding: 0;
+  font-size: large;
+  cursor: default;
+}

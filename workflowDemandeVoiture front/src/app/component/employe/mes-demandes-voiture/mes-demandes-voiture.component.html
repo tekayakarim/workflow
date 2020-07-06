@@ -1,0 +1,33 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demandes des voitures</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <app-demande-voiture></app-demande-voiture>
+
+      <nav class="nav nav-pills" id="linksVoiture">
+        <a [routerLink]="['all-demandes']" class="nav-item nav-link active"
+          >Tous
+        </a>
+        <a [routerLink]="['new-demandes']" class="nav-item nav-link">nouveau</a>
+        <a [routerLink]="['accepted-demandes']" class="nav-item nav-link"
+          >accepte</a
+        >
+        <a [routerLink]="['refused-demandes']" class="nav-item nav-link"
+          >refuse</a
+        >
+        <a [routerLink]="['tocheck-demandes']" class="nav-item nav-link"
+          >pour revision</a
+        >
+      </nav>
+
+      <router-outlet></router-outlet>
+    </mdb-card-body>
+  </mdb-card>
+</div>

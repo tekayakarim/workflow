@@ -19,4 +19,6 @@ String updateDemandeVoiture(long id,int statut,String motif);
 List<DemandeVoiture> getAllDemandeVoiture(String userName);
 //end demande voit
 ChefHierarchique getCin(String cin);
+
+public String complete(String task);
 }

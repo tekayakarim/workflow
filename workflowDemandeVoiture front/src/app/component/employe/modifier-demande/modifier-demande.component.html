@@ -1,0 +1,177 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demande de document papier</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Modifier demande de document papier id = {{ id }}</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <form
+        class="text-center"
+        style="color: #757575;"
+        [formGroup]="documentForm"
+        (submit)="modify(); frame.hide()"
+      >
+        <div class="form-row">
+          <div class="col">
+            <input
+              type="text"
+              formControlName="nom"
+              id="materialRegisterFormFirstName"
+              class="form-control mt-4"
+              mdbInput
+              disabled
+            />
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              formControlName="prenom"
+              id="materialRegisterFormLastName"
+              class="form-control mt-4"
+              mdbInput
+              disabled
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          formControlName="cin"
+          id="materialRegisterFormLastName"
+          class="form-control mt-4"
+          mdbInput
+          disabled
+        />
+        <textarea
+          type="text"
+          id="materialContactFormMessage"
+          placeholder="description"
+          class="form-control md-textarea mt-4"
+          mdbInput
+          rows="10"
+          formControlName="description"
+        ></textarea>
+
+        <select
+          class="browser-default custom-select mb-4 mt-4"
+          formControlName="type"
+        >
+          <option value="" disabled selected hidden
+            >Choisir le type de document
+          </option>
+          <option value="Attestation de salaire">Attestation de salaire</option>
+          <option value="Relevé du service">Relevé du service</option>
+          <option value="titre de congés">titre de congés</option>
+          <option value="Promotion de grade">Promotion de grade</option>
+          <option value="Avancement Ordinaire">Avancement Ordinaire</option>
+          <option value="Décision de Promotion">Décision de Promotion</option>
+          <option value="Décision de Détachement"
+            >Décision de Détachement</option
+          >
+          <option value="Décision de la Mise au non Disponibilité">
+            Décision de la Mise au non Disponibilité</option
+          >
+          <option value="Décision d’Affectation">Décision d’Affectation</option>
+          <option value="Attestation de Travail">Attestation de Travail</option>
+          <option value="Fiche de Paie">Fiche de Paie</option>
+          <option value="Attestation de Retenue d’Impôt"
+            >Attestation de Retenue d’Impôt</option
+          >
+          <option value="Décision d’Affectation">Décision d’Affectation</option>
+          <option value="Autres Documents">Autres Documents</option>
+        </select>
+        <span
+          class="blob-btn-warning mr-1 ml-1"
+          id="login-btn-container"
+          data-toggle="modal"
+          data-target="#basicExample"
+          (click)="frame.show()"
+        >
+          Modifier
+          <span class="blob-btn-warning__inner">
+            <span class="blob-btn-warning__blobs">
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+              <span class="blob-btn-warning__blob"></span>
+            </span>
+          </span>
+        </span>
+        <div
+          mdbModal
+          #frame="mdbModal"
+          class="modal fade top"
+          id="frameModalTop"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="myModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content text-center">
+              <!--Header-->
+              <div
+                class="modal-header d-flex justify-content-center"
+                style="background-color: rgba(255, 203, 5, 1);"
+              >
+                <p class="heading">Are you sure?</p>
+              </div>
+
+              <!--Body-->
+              <div class="modal-body" style="color: rgba(255, 203, 5, 1);">
+                <mdb-icon
+                  fas
+                  icon="pen"
+                  size="4x"
+                  class="animated rotateIn"
+                ></mdb-icon>
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer justify-content-center">
+                <button
+                  class="blob-btn-warning mr-1 ml-1"
+                  id="login-btn-container"
+                  type="submit"
+                >
+                  Modifier
+                  <span class="blob-btn-warning__inner">
+                    <span class="blob-btn-warning__blobs">
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                      <span class="blob-btn-warning__blob"></span>
+                    </span>
+                  </span>
+                </button>
+                <a
+                  type="button"
+                  mdbBtn
+                  color="warning"
+                  class="waves-effect"
+                  mdbWavesEffect
+                  data-dismiss="modal"
+                  (click)="frame.hide()"
+                  >Annuler</a
+                >
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+      </form>
+    </mdb-card-body>
+  </mdb-card>
+</div>

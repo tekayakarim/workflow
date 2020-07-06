@@ -1,0 +1,5 @@
+.first-div + .blob-btn-accept {
+    &::before {
+        border: none;
+    }
+}

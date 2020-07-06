@@ -1,0 +1,52 @@
+<nav class="navbar">
+  <ul class="navbar-nav">
+    <li class="logo">
+      <div href="#" class="nav-link" #navLogo>
+        <img src="../../../assets/images/logo.png" />
+      </div>
+    </li>
+
+    <ng-container *ngIf="roles.indexOf('ROLE_EMPLOYE') > -1">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/mes-demandes-voiture']">
+          <i class="fa fa-car"></i>
+          <span class="link-text">
+            Demandes de Voiture
+          </span>
+        </a>
+      </li>
+    </ng-container>
+
+    <ng-container *ngIf="roles.indexOf('ROLE_CHEFHIERARCHIQUE') > -1">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/demandes-voiture-chef-hierarchique']"
+        >
+          <i class="fa fa-car"></i>
+          <span class="link-text">
+            Demandes de Voiture
+          </span>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</nav>
+
+<nav class="navbar-top">
+  <ul class="navbar-top-nav">
+    <li class="nav-item" mdbTooltip="Quitter" placement="left">
+      <a href="" class="nav-link" (click)="leave()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="showRole()">
+        <i class="fas fa-user"></i>
+        <span class="link-text">
+          Connecté en tant que {{ username }}<i class="fas fa-caret-down"></i>
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>

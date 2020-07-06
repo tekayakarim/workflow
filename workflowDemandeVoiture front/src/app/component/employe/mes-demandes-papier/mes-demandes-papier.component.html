@@ -1,0 +1,76 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demandes des documents papiers</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+  <mdb-card style="box-shadow: none; border: none;">
+    <mdb-card-body>
+      <app-demande-papier></app-demande-papier>
+
+      <!-- <table
+        bordered="true"
+        mdbTable
+        #tableEl="mdbTable"
+        hover="true"
+        class="mt-3"
+      >
+        <thead>
+          <tr>
+            <th
+              *ngFor="let head of headElements; let i = index"
+              [mdbTableSort]="elements"
+              [sortBy]="headElements[i]"
+              scope="col"
+            >
+              {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody #row>
+          <tr mdbTableCol *ngFor="let el of elements; let i = index">
+            <th scope="row" style="text-align: center;">{{ el.id }}</th>
+            <td width="25%" style="text-align: center;">{{ el.type }}</td>
+            <td width="45%">{{ el.description }}</td>
+            <td width="17%" style="text-align: center;">
+              <app-delete-comfirmation-modal
+                [id]="el.id"
+              ></app-delete-comfirmation-modal>
+              <button
+                class="blob-btn-warning"
+                [routerLink]="['/modifier-demande', el.id]"
+              >
+                <i class="fas fa-pen"></i>
+                <span class="blob-btn-warning__inner">
+                  <span class="blob-btn-warning__blobs">
+                    <span class="blob-btn-warning__blob"></span>
+                    <span class="blob-btn-warning__blob"></span>
+                    <span class="blob-btn-warning__blob"></span>
+                    <span class="blob-btn-warning__blob"></span>
+                    <span class="blob-btn-warning__blob"></span>
+                    <span class="blob-btn-warning__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>-->
+
+      <nav class="nav nav-pills" id="links">
+        <a [routerLink]="['all']" class="nav-item nav-link active">Tous </a>
+        <a [routerLink]="['new']" class="nav-item nav-link">nouveau</a>
+        <a [routerLink]="['accepted']" class="nav-item nav-link">accepte</a>
+        <a [routerLink]="['refused']" class="nav-item nav-link">refuse</a>
+        <a [routerLink]="['tocheck']" class="nav-item nav-link"
+          >pour revision</a
+        >
+      </nav>
+
+      <router-outlet></router-outlet>
+    </mdb-card-body>
+  </mdb-card>
+</div>

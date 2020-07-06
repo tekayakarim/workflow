@@ -1,0 +1,67 @@
+<table bordered="true" mdbTable #tableEl="mdbTable" hover="true" class="mt-3">
+  <thead>
+    <tr *ngIf="isEmpty">
+      <th
+        *ngFor="let head of headElements; let i = index"
+        [mdbTableSort]="elements"
+        [sortBy]="headElements[i]"
+        scope="col"
+      >
+        {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+      </th>
+    </tr>
+  </thead>
+  <tbody #row>
+    <tr mdbTableCol *ngFor="let el of elements; let i = index">
+      <th scope="row" style="text-align: center;">{{ el.id }}</th>
+      <td width="25%" style="text-align: center;">{{ el.type }}</td>
+      <td width="45%">{{ el.description }}</td>
+      <td width="17%" style="text-align: center;">
+        <ng-container *ngIf="el.statut == 'new'">
+          <app-delete-comfirmation-modal
+            [id]="el.id"
+          ></app-delete-comfirmation-modal
+        ></ng-container>
+        <ng-container *ngIf="el.statut != 'new' && el.statut != 'toCheck'"
+          >Pas d'action
+        </ng-container>
+        <ng-container *ngIf="el.statut == 'new' || el.statut == 'toCheck'">
+          <button
+            *ngIf="el.langue == 'arabe'"
+            class="blob-btn-warning"
+            [routerLink]="['/modifier-demande-ar', el.id]"
+          >
+            <i class="fas fa-pen"></i>
+            <span class="blob-btn-warning__inner">
+              <span class="blob-btn-warning__blobs">
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+              </span>
+            </span>
+          </button>
+          <button
+            *ngIf="el.langue == 'francais'"
+            class="blob-btn-warning"
+            [routerLink]="['/modifier-demande', el.id]"
+          >
+            <i class="fas fa-pen"></i>
+            <span class="blob-btn-warning__inner">
+              <span class="blob-btn-warning__blobs">
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+                <span class="blob-btn-warning__blob"></span>
+              </span>
+            </span>
+          </button>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>

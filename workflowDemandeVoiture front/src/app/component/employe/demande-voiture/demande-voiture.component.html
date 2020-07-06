@@ -1,0 +1,161 @@
+<button
+  class="blob-btn-accept"
+  id="login-btn-container"
+  (click)="basicModal.show()"
+>
+  Ajouter une demande <i class="fas fa-plus"></i>
+  <span class="blob-btn-accept__inner">
+    <span class="blob-btn-accept__blobs">
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+      <span class="blob-btn-accept__blob"></span>
+    </span>
+  </span>
+</button>
+<div
+  mdbModal
+  #basicModal="mdbModal"
+  class="modal fade right"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fluid" role="document">
+    <div
+      class="modal-content"
+      style="background-color: transparent; box-shadow: none; border: none;"
+    >
+      <div class="container">
+        <mdb-card>
+          <mdb-card-header
+            style="background-color: #3abeea;"
+            class="text-center text-white"
+          >
+            <h5>
+              <strong>Ajouter une demande</strong>
+            </h5>
+          </mdb-card-header>
+          <mdb-card-body class="px-lg-5 pt-0">
+            <form
+              class="text-center"
+              style="color: #757575;"
+              (submit)="basicModal.hide()"
+              [formGroup]="documentForm"
+              (ngSubmit)="onSubmit(); basicModal.hide()"
+            >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-4">
+                    <textarea
+                      required
+                      type="text"
+                      id="materialContactFormMessage"
+                      placeholder="description"
+                      class="form-control md-textarea mt-4"
+                      mdbInput
+                      rows="6"
+                      formControlName="description"
+                    ></textarea>
+                    <input
+                      placeholder="accompagnant"
+                      class="form-control mt-4"
+                      type="text"
+                      onfocus="(this.type='file')"
+                      formControlName="accompagants"
+                    />
+                  </div>
+                  <div class="col-4">
+                    <input
+                      placeholder="lieu départ"
+                      class="form-control mt-4"
+                      type="text"
+                      formControlName="lieu_depart"
+                    />
+                    <input
+                      placeholder="Date départ"
+                      class="form-control mt-4"
+                      type="text"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                      formControlName="dataDebut"
+                    />
+                    <input
+                      placeholder="temps de départ"
+                      class="form-control mt-4"
+                      type="text"
+                      onfocus="(this.type='time')"
+                      onblur="(this.type='text')"
+                      formControlName="temps_depart"
+                    />
+                  </div>
+                  <div class="col-4">
+                    <input
+                      placeholder="lieu retour"
+                      class="form-control mt-4"
+                      type="text"
+                      formControlName="lieu_destination"
+                    />
+                    <input
+                      placeholder="Date retour"
+                      class="form-control mt-4"
+                      type="text"
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                      formControlName="date_retour"
+                    />
+                    <input
+                      placeholder="temps de retour"
+                      class="form-control mt-4"
+                      type="text"
+                      onfocus="(this.type='time')"
+                      onblur="(this.type='text')"
+                      formControlName="temps_retour"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button class="blob-btn mr-1 ml-1 mt-4" type="submit">
+                Ajouter <i class="fas fa-plus"></i>
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>
+              <button
+                class="blob-btn-danger mr-1 ml-1 mt-4"
+                id="login-btn-container"
+                (click)="basicModal.hide()"
+                type="reset"
+              >
+                Annuler <i class="fa fa-times" aria-hidden="true"></i>
+                <span class="blob-btn-danger__inner">
+                  <span class="blob-btn-danger__blobs">
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                    <span class="blob-btn-danger__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </form>
+            <!-- Form -->
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Material form register -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.container {
+    margin-left: 22%;
+    margin-top: 7%;
+}
+@media only screen and (max-width: 1000px) {
+    .container {
+        width: 100%;
+        margin-left: 0%;
+    }
+}
+.blob-btn-warning,
+.blob-btn-danger {
+    &::before {
+        border: none;
+    }
+}

@@ -1,0 +1,55 @@
+<div class="container">
+  <mdb-breadcrumb customClass="white" class="bc-icons-2">
+    <mdb-breadcrumb-item class="active"
+      ><i class="fas fa-home"></i>Home</mdb-breadcrumb-item
+    >
+    <mdb-breadcrumb-item class="active"
+      >Mes demandes de documents papier</mdb-breadcrumb-item
+    >
+  </mdb-breadcrumb>
+
+  <div class="row">
+    <div class="col-8">
+      <mdb-card style="box-shadow: none; border: none;">
+        <mdb-card-body>
+          <h3>Details de la demande :</h3>
+
+          <table bordered="true" mdbTable hover="true" class="mt-3">
+            <tbody>
+              <tr *ngFor="let data of dataElements; let i = index">
+                <td width="50%" style="font-weight: 500;">
+                  {{ headElements[i] }}
+                </td>
+                <td>{{ data }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mdb-card-body></mdb-card
+      >
+    </div>
+    <div class="col-4">
+      <mdb-card style="box-shadow: none; border: none;">
+        <mdb-card-body>
+          <h3>Action :</h3>
+
+          <div class="btn-container">
+            <app-refuse-confirmation-modal
+              [id]="id"
+              class="mt-3 mb-3"
+            ></app-refuse-confirmation-modal>
+
+            <app-revision-confirmation-modal
+              [id]="id"
+              class="mt-3 mb-3"
+            ></app-revision-confirmation-modal>
+
+            <app-accept-confirmation-modal
+              [id]="id"
+              class="mt-3 mb-3"
+            ></app-accept-confirmation-modal>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>

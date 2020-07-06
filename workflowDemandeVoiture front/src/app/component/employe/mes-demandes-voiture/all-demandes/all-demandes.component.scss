@@ -1,0 +1,6 @@
+.blob-btn-warning,
+.blob-btn-danger {
+  &::before {
+    border: none;
+  }
+}

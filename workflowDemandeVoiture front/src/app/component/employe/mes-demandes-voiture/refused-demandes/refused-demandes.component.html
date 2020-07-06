@@ -1,0 +1,30 @@
+<table bordered="true" mdbTable #tableEl="mdbTable" hover="true" class="mt-3">
+  <thead>
+    <tr>
+      <th
+        *ngFor="let head of headElements; let i = index"
+        [mdbTableSort]="elements"
+        [sortBy]="headElements[i]"
+        scope="col"
+      >
+        {{ head | titlecase }} <mdb-icon fas icon="sort"></mdb-icon>
+      </th>
+    </tr>
+  </thead>
+  <tbody #row>
+    <ng-container *ngFor="let el of elements; let i = index">
+      <tr mdbTableCol *ngIf="el.statut == 'denied'">
+        <th scope="row" style="text-align: center;">{{ el.id }}</th>
+        <td width="25%" style="text-align: center;">{{ el.typeMission }}</td>
+        <td width="35%">{{ el.description }}</td>
+        <td width="17%">{{ el.nbPassergers }}</td>
+          <td width="17%">{{ el.poids }}</td>
+        <td width="17%" style="text-align: center;">
+          <app-delete-confirmation-modal-voiture
+            [id]="el.id"
+          ></app-delete-confirmation-modal-voiture>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

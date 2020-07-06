@@ -1,0 +1,479 @@
+$cyan: #3abeea;
+$dark: #ffffff;
+$borderW: 2px;
+$mt: 25px;
+$btnFontSize: 16px;
+$generalFontSize: 17px;
+
+//a----------------------------------------------------------------------------------------------------
+a {
+  text-decoration: none;
+  color: #696969;
+}
+a:hover {
+  color: $cyan;
+  text-decoration: underline;
+}
+//btn normal--------------------------------------------------------------------------------------------
+
+button:focus {
+  outline: none;
+}
+.blob-btn {
+  $numOfBlobs: 4;
+  padding: 10px 25px;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  color: $cyan;
+  font-weight: bold;
+  font-size: $btnFontSize;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 1s;
+  cursor: pointer;
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: $borderW solid $cyan;
+  }
+
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: $borderW * 1.5;
+    top: $borderW * 1.5;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s 0.2s;
+  }
+
+  &:hover {
+    color: $dark;
+
+    &:after {
+      transition: all 0.3s;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  // additional container created
+  &__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url("#goo");
+  }
+
+  &__blob {
+    position: absolute;
+    top: $borderW;
+    width: 100% / $numOfBlobs;
+    height: 100%;
+    background: $cyan;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+
+    @supports (filter: url("#goo")) {
+      transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+
+    @for $i from 1 through $numOfBlobs {
+      &:nth-child(#{$i}) {
+        left: ($i - 1) * (120% / $numOfBlobs);
+        transition-delay: ($i - 1) * 0.08s;
+      }
+    }
+
+    .blob-btn:hover & {
+      transform: translateZ(0) scale(1.7);
+
+      @supports (filter: url("#goo")) {
+        transform: translateZ(0) scale(1.8);
+      }
+    }
+  }
+}
+//Danger-button-style-------------------------------------------------------------------------------
+.blob-btn-danger {
+  $red: #ff4c4c;
+
+  $numOfBlobs: 4;
+  z-index: 1;
+  position: relative;
+  font-size: $btnFontSize;
+  text-align: center;
+  color: $red;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 1s;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: $borderW solid $red;
+  }
+
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: $borderW * 1.5;
+    top: $borderW * 1.5;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s 0.2s;
+  }
+
+  &:hover {
+    color: $dark;
+
+    &:after {
+      transition: all 0.3s;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  // additional container created
+  &__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url("#goo");
+  }
+
+  &__blob {
+    position: absolute;
+    top: $borderW;
+    width: 100% / $numOfBlobs;
+    height: 100%;
+    background: $red;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+
+    @supports (filter: url("#goo")) {
+      transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+
+    @for $i from 1 through $numOfBlobs {
+      &:nth-child(#{$i}) {
+        left: ($i - 1) * (120% / $numOfBlobs);
+        transition-delay: ($i - 1) * 0.08s;
+      }
+    }
+
+    .blob-btn-danger:hover & {
+      transform: translateZ(0) scale(1.7);
+
+      @supports (filter: url("#goo")) {
+        transform: translateZ(0) scale(1.8);
+      }
+    }
+  }
+}
+//Warning-button-style-------------------------------------------------------------------------------
+.blob-btn-warning {
+  $yellow: rgba(255, 203, 5, 1);
+  $numOfBlobs: 4;
+  padding: 10px 25px;
+
+  font-size: $btnFontSize;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  color: $yellow;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 1s;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: $borderW solid $yellow;
+  }
+
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: $borderW * 1.5;
+    top: $borderW * 1.5;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s 0.2s;
+  }
+
+  &:hover {
+    color: $dark;
+
+    &:after {
+      transition: all 0.3s;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  // additional container created
+  &__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url("#goo");
+  }
+
+  &__blob {
+    position: absolute;
+    top: $borderW;
+    width: 100% / $numOfBlobs;
+    height: 100%;
+    background: $yellow;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+
+    @supports (filter: url("#goo")) {
+      transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+
+    @for $i from 1 through $numOfBlobs {
+      &:nth-child(#{$i}) {
+        left: ($i - 1) * (120% / $numOfBlobs);
+        transition-delay: ($i - 1) * 0.08s;
+      }
+    }
+
+    .blob-btn-warning:hover & {
+      transform: translateZ(0) scale(1.7);
+
+      @supports (filter: url("#goo")) {
+        transform: translateZ(0) scale(1.8);
+      }
+    }
+  }
+}
+//aceept-button-style-------------------------------------------------------------------------------
+.blob-btn-accept {
+  $green: rgba(0, 177, 106, 1);
+  $numOfBlobs: 4;
+  font-size: $btnFontSize;
+  z-index: 1;
+  position: relative;
+  padding: 10px 25px;
+  text-align: center;
+  color: $green;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 1s;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: $borderW solid $green;
+  }
+
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: $borderW * 1.5;
+    top: $borderW * 1.5;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s 0.2s;
+  }
+
+  &:hover {
+    color: $dark;
+
+    &:after {
+      transition: all 0.3s;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  // additional container created
+  &__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url("#goo");
+  }
+
+  &__blob {
+    position: absolute;
+    top: $borderW;
+    width: 100% / $numOfBlobs;
+    height: 100%;
+    background: $green;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+
+    @supports (filter: url("#goo")) {
+      transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+
+    @for $i from 1 through $numOfBlobs {
+      &:nth-child(#{$i}) {
+        left: ($i - 1) * (120% / $numOfBlobs);
+        transition-delay: ($i - 1) * 0.08s;
+      }
+    }
+
+    .blob-btn-accept:hover & {
+      transform: translateZ(0) scale(1.7);
+
+      @supports (filter: url("#goo")) {
+        transform: translateZ(0) scale(1.8);
+      }
+    }
+  }
+}
+
+//active nav background------------------------------------------------------------------------------------------
+nav .active {
+  background-color: #3abeea !important;
+  color: white !important;
+}
+//general---------------------------------------------------------------------------------------------------------
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  font-size: $generalFontSize;
+  box-shadow: none;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+button,
+input[type="button"],
+input[type="reset"],
+a[type="button"] {
+  font-size: $btnFontSize !important;
+  padding: 8px 23px !important;
+}
+.container {
+  margin-left: 22%;
+  margin-top: 8%;
+}
+@media only screen and (max-width: 1000px) {
+  .container {
+    width: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+#links,
+#linksVoiture {
+  float: right;
+}
+#links .nav-link,
+#linksVoiture .nav-link {
+  border: #3abeea 1.5px solid !important;
+  border-radius: 10px !important;
+  color: #3abeea !important;
+  margin: 0px 2px;
+}
+#links .active,
+#linksVoiture .active {
+  background-color: #3abeea !important;
+  color: white !important;
+}
+#linksVoiture .active:hover {
+  color: white !important;
+}
+#links .active:hover {
+  color: white !important;
+}
+tr,
+td,
+th {
+  cursor: pointer;
+  font-size: $generalFontSize !important;
+}

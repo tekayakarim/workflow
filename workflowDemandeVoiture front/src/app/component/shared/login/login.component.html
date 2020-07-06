@@ -1,0 +1,74 @@
+<div class="background-image"></div>
+<mdb-card style="filter: blur(0px);">
+  <div style="text-align: center;">
+    <img src="../../assets/images/logo.png" class="logo" alt="" />
+  </div>
+  <mdb-card-header class="text-center text-white">
+    <h5>
+      <strong>Accéder a votre compte</strong>
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body>
+    <!-- Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center">
+      <!-- Name -->
+
+      <input
+        type="text"
+        autocomplete="off"
+        class="form-control mb-3"
+        placeholder="Nom d'utilisateur"
+        mdbInput
+        formControlName="username"
+      />
+
+      <!-- pass -->
+      <input
+        type="password"
+        class="form-control mb-3"
+        placeholder="Mot de passe"
+        mdbInput
+        formControlName="password"
+      />
+
+      <button
+        class="blob-btn mb-3"
+        id="login-btn-container"
+        style="background-color: white; width: 100%;"
+      >
+        Login
+        <span class="blob-btn__inner">
+          <span class="blob-btn__blobs">
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+            <span class="blob-btn__blob"></span>
+          </span>
+        </span>
+      </button>
+
+      <div class="mb-3">
+        <mdb-checkbox [default]="true">Se souvenir de moi</mdb-checkbox>
+      </div>
+
+      <div class="mb-3">Mot de passe oublié ? <a href="">Cliquer ici</a></div>
+    </form>
+    <!-- Form -->
+    <p></p>
+  </mdb-card-body>
+</mdb-card>
+<!-- Material form subscription -->
+<ngx-spinner
+  bdColor="rgb(255,255,255)"
+  size="large"
+  color="#3abeea"
+  type="square-spin"
+  [fullScreen]="true"
+  ><p class="mt-5" style="color: #3abeea;">
+    Tentative de connxion...
+  </p></ngx-spinner
+>

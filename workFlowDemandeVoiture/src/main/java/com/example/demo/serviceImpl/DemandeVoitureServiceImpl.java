@@ -37,10 +37,11 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 			Employe emp = employeRepository.findByNom(demandeVoiture.getEmp().getNom());
 			if(emp!=null) {
 				demandeVoiture.setEmp(emp);
-			//	demandeVoiture.setStatut("new");
+				demandeVoiture.setStatut(-1);
+				demandeVoitureRepository.save(demandeVoiture);
 				workFlowDemandeVoitureService.startTheProcess(emp.getUserName(), demandeVoiture);
 				System.out.println(demandeVoiture);
-				return workFlowDemandeVoitureService.processInformation();
+				return "success";
 			}//end if
 			else {return "employe not found";}
 		} catch (Exception e) {
@@ -85,13 +86,13 @@ public class DemandeVoitureServiceImpl implements DemandeVoitureService {
 	public String deleteDemande(long id) {
 		try {
 			DemandeVoiture dem=demandeVoitureRepository.findByid(id);
-		/*	if(dem.getStatut().equals("new") || dem.getStatut().equals("denied"))
+			if(dem.getStatut()==-1)
 			{
 			demandeVoitureRepository.deleteById(id);
 			return "success";
 			}
 			else
-				return "cannot delete a demande with statut not equal to new or denied";*/
+				return "cannot delete a demande with statut not equal to new or denied";
 		} catch (IllegalArgumentException e) {
 			System.out.println("demande not found");
 			e.printStackTrace();
